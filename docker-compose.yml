@@ -1,0 +1,57 @@
+version: "2.1"
+
+services:
+  review_app_nginx:
+    build: "."
+    container_name: review_app_nginx
+    volumes:
+      - ./nginx/www:/var/www
+      - ./nginx/upload_test:/home/upload_test
+    ports:
+      - 443:443
+      - 80:80
+    restart: always
+    depends_on:
+      - review_app_mysql
+    links:
+      - review_app_mysql
+  review_app_mysql:
+    image: mysql:5.7
+    container_name: review_app_mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    environment:
+      MYSQL_DATABASE: review_app_db
+      MYSQL_USER: review_app_user
+      MYSQL_PASSWORD: review_app_password
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    hostname: mysql
+    restart: always
+  test_review_app_mysql:
+    image: mysql:5.7
+    container_name: test_review_app_mysql
+    ports:
+      - 3307:3306
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_password
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    hostname: test_mysql
+    restart: always
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - review_app_mysql
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=mysql
+      - PMA_USER=root
+    ports:
+      - "8080:80"
