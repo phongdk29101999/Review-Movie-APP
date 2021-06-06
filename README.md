@@ -24,10 +24,9 @@ $ docker exec review_app_nginx bash -c "cd var/www/htdocs && php artisan migrate
 $ docker exec review_app_nginx bash -c "cd var/www/htdocs && php artisan db:seed"
 ```
 
-## access to web api
+## API host
 ```
 http://localhost
-https://localhost
 ```
 
 ## access to phpMyAdmin
