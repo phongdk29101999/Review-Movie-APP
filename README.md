@@ -16,7 +16,7 @@ $ docker-compose up -d
 ```
 ## composer load 
 ```
-$ docker exec review_app_nginx bash -c "cd var/www/htdocs && composer install"
+$ docker exec review_app_nginx bash -c "cd var/www/htdocs && cp .env.example .env && composer install"
 ```
 
 ## migration
