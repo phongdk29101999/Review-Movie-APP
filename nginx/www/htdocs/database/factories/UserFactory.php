@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable
 
 namespace Database\Factories;
 
@@ -6,6 +7,12 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+/**
+ * This will suppress all the PMD warnings in
+ * this class.
+ *
+ * @SuppressWarnings(PHPMD)
+ */
 class UserFactory extends Factory
 {
     /**

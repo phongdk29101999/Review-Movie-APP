@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
  *
  * @SuppressWarnings(PHPMD)
  */
-class CreateUsersTable extends Migration
+class CreateMoviesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,14 +20,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->text('avatar')->nullable();
-            $table->boolean('is_admin')->default('false');
-            $table->rememberToken();
+            $table->string('title');
+            $table->string('poster');
+            $table->integer('movie_lenght');
+            $table->string('director');
+            $table->year('production_year');
+            $table->float('expert_evaluation', 3, 1);
+            $table->float('watched_evaluation', 3, 1);
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -39,6 +41,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('movies');
     }
 }
