@@ -1,5 +1,5 @@
 <?php
-
+//phpcs:disable
 use Illuminate\Support\Facades\Route;
 
 /*
