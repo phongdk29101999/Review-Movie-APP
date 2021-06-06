@@ -20,6 +20,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::prefix('movies')->name('movies.')->group(function () {
-//     Route::get('/', [MovieController::class, 'listAllMovies'])->name('all');
-// });
+Route::prefix('movies')->name('movies.')->group(function () {
+    Route::get('/', [MovieController::class, 'getAllMovies'])->name('all');
+});

@@ -13,5 +13,7 @@ use App\Models\Movie;
  */
 class MovieController extends Controller
 {
-    //
+    public function getAllMovies () {
+        return response()->json(Movie::all());
+    }
 }
