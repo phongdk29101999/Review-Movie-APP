@@ -11,6 +11,7 @@ storage/*.key
 docker-compose.override.yml
 Homestead.json
 Homestead.yaml
+node_modules
 
 # misc
 .DS_Store

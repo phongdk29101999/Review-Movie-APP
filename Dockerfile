@@ -17,6 +17,9 @@ RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
+RUN curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+RUN yum install nodejs -y
+
 # Config for PHP
 COPY nginx/php.ini /etc/
 
