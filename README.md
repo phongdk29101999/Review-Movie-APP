@@ -1,4 +1,7 @@
-# Install
+# Review Movies API
+## Dependence
+[frontend](https://github.com/minhld99/React_Movie_Review)
+
 ## Requirement
 Docker-CE 
 
@@ -12,7 +15,7 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
-## access to web app
+## access to web api
 ```
 http://localhost
 https://localhost
