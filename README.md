@@ -1,4 +1,5 @@
 # Review Movies API
+> Review movies API build with Laravel 8 & Docker
 ## Dependence
 [frontend](https://github.com/minhld99/React_Movie_Review)
 
@@ -16,7 +17,7 @@ $ docker-compose up -d
 ```
 ## composer load 
 ```
-$ docker exec review_app_nginx bash -c "cd var/www/htdocs && composer install"
+$ docker exec review_app_nginx bash -c "cd var/www/htdocs && cp .env.example .env && composer install"
 ```
 
 ## migration
