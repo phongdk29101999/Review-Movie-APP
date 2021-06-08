@@ -1,4 +1,4 @@
-version: "2.1"
+version: "2.4"
 
 services:
   review_app_nginx:
@@ -52,6 +52,7 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOSTS=mysql
-      - PMA_USER=root
+      - PMA_USER=review_app_user
+      - PMA_PASSWORD=review_app_password
     ports:
       - "8080:80"
