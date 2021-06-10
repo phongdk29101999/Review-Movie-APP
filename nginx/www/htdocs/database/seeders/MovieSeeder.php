@@ -237,8 +237,8 @@ class MovieSeeder extends Seeder
             ],
             [
                 'id' => 122,
-                'title' => "The Lord of the Rings: The Return of the King/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
-                'poster' => 'https://image.tmdb.org/t/p/w500',
+                'title' => "The Lord of the Rings: The Return of the King",
+                'poster' => 'https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg',
                 'movie_lenght' => 201,
                 'director' => 'Peter Jackson',
                 'production_year' => 2003,
