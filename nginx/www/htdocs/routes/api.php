@@ -23,3 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('movies')->name('movies.')->group(function () {
     Route::get('/', [MovieController::class, 'getAllMovies'])->name('all');
 });
+
+Route::apiResource('/admin/users', 'UserController');
+Route::apiResource('/admin/movie', 'MovieController');
+Route::get('/admin/user/total','UserController@getTotalUser')->name('user.total');
+// Route::get('/user/total/{id}','UserController@test')->name('user.total1');
+Route::get('/movie/total','MovieController@TotalMovie')->name('movie.total');
