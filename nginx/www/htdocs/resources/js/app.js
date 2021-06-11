@@ -15,11 +15,13 @@ import CreateMovie from './components/admin/movie/create-movie';
 import ListMovie from './components/admin/movie/list-movie';
 import EditMovie from './components/admin/movie/edit-movie';
 
+import Detail from './components/detail/Detail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 export default function App() {
   return (
-    <Router>
+    <Router >
       <NavBar />
       <Switch>
         <Route path='/' exact component={Home} />
@@ -27,6 +29,7 @@ export default function App() {
         <Route path='/add-movie' component={AddMovie} />
         <Route path='/search' component={Search} />
         <Route path='/sign-up' component={SignUp} />
+        <Route path='/movie/:id' component = {Detail} />
       {/* Admin */}
           <Route path="/admin" component={Admin} />
         <Route path="/admin/create-user" component={CreateUser} />
@@ -35,6 +38,7 @@ export default function App() {
           <Route path="/admin/create-movie" component={CreateMovie} />
           <Route path="/admin/edit-movie/:id" component={EditMovie} />
         <Route path="/admin/list-movie" component={ListMovie} />
+       
       </Switch>
     </Router>
   );

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Cards.css';
 
 const IMAGE_API = "https://image.tmdb.org/t/p/w1280";
 
-function CardItem({ title, poster_path, overview, vote_average, release_date }) {
-
+function CardItem({ title, poster_path, overview, vote_average, release_date, id }) {
+  let history = useHistory();
   const convertRateScale = (rate) => {
     return ((rate/10) * 5).toFixed(1);
   }
@@ -19,16 +19,20 @@ function CardItem({ title, poster_path, overview, vote_average, release_date }) 
       return 'red';
     }
   }
+  const handleClick = () =>{
+    history.push(`/movie/${id}`);
+  }
 
   return (
     <>
       <li className='cards__item'>
-        <Link className='cards__item__link' to={'/'}>
+        <div className='cards__item__link' >
           <figure className='cards__item__pic-wrap' data-category={release_date}>
             <img
               className='cards__item__img'
               alt='Movie Poster'
               src={IMAGE_API + poster_path}
+              onClick={handleClick}
             />
           </figure>
           <div className='cards__item__info'>
@@ -39,7 +43,7 @@ function CardItem({ title, poster_path, overview, vote_average, release_date }) 
             <h2>Overview:</h2>
             <p className='cards__item__text'>{overview}</p>
           </div>
-        </Link>
+        </div>
       </li>
     </>
   );
