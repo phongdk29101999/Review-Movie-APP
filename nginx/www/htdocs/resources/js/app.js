@@ -33,7 +33,7 @@ export default function App() {
           <PublicRoute path='/' exact component={Home} />
           <PublicRoute path='/about-us' component={AboutUs} />
           <PublicRoute path='/add-movie' component={AddMovie} />
-          <PublicRoute path='/search' component={Search} />
+          {/* <PublicRoute path='/search' component={Search} /> */}
           <PublicRoute path='/sign-up' component={SignUp} />
           <PublicRoute path='/movie/:id' component={Detail} />
 

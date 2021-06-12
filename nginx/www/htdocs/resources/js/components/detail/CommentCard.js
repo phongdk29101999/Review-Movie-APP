@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react'
 import ReactStars from "react-rating-stars-component";
 
 function CommentCard({review}){
-    console.log(review);
     const [content, setContent] = useState(review.content)
     const [showMore, setShowMore] = useState({
         status:false,
