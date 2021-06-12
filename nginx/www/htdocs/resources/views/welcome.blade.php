@@ -44,7 +44,7 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased hold-transition sidebar-mini layout-fixed">
         <div id="app"></div>
         <script src="{{asset('js/app.js')}}" ></script>
     <!-- jQuery -->
