@@ -11,15 +11,15 @@ export default class MovieTableRow extends Component {
     }
 
     deleteMovie() {
-        axios.delete('http://localhost:8000/api/admin/movie/' + this.props.obj.id)
+        axios.delete('http://localhost/api/admin/movie/' + this.props.obj.id)
         .then((res) => {
             alert('Movie deleted')
-            }).catch((error) => {
-                console.log(error)
-            })
-        
-            this.props.history.push("/admin/create-movie")
-    };
+        }).catch((error) => {
+            console.log(error)
+        })
+        this.props.history.push("/admin/create-movie")
+    }
+
     render() {
         return (
             <tr>
@@ -39,5 +39,3 @@ export default class MovieTableRow extends Component {
         );
     }
 }
-
-

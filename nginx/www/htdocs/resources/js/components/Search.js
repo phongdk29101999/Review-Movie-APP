@@ -1,5 +1,4 @@
 import React from 'react';
-import '../app.css';
 
 // const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=7d6c5edae738317365e3235566d4c72d&query=";
 

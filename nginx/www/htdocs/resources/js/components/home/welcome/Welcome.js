@@ -9,7 +9,7 @@ function Welcome() {
       <iframe 
         src="https://www.youtube.com/embed/KCSNFZKbhZE?autoplay=1&mute=1&loop=1&rel=0&showinfo=0&color=white&iv_load_policy=3&playlist=KCSNFZKbhZE" 
         title="Avengers: End Game" 
-        frameborder="0"
+        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowFullScreen
       />

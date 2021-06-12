@@ -11,25 +11,23 @@ export default class ExpenseTableRow extends Component {
     }
 
     deleteUser() {
-        axios.delete('http://localhost:8000/api/admin/users/' + this.props.obj.id)
-            .then((res) => {
-                alert('User deleted')
-                this.props.history.push('http://127.0.0.1:8000/');
-            }).catch((error) => {
-                console.log(error)
-            })
-            this.props.history.push('/')
-
-           
-
+        axios.delete('http://localhost/api/admin/users/' + this.props.obj.id)
+        .then((res) => {
+            alert('User deleted')
+            this.props.history.push('/admin');
+        }).catch((error) => {
+            console.log(error)
+        })
+        this.props.history.push('/')
     };
+
     render() {
         return (
             <tr>
                 <td>{this.props.obj.id}</td>
                 <td>{this.props.obj.name}</td>
                 <td>{this.props.obj.email}</td>              
-                  <td>
+                <td>
                     <Link className="edit-link" to={"/admin/edit-user/" + this.props.obj.id}>
                        <Button size="sm" variant="info">Edit</Button>
                     </Link>
@@ -39,6 +37,3 @@ export default class ExpenseTableRow extends Component {
         );
     }
 }
-
-
-

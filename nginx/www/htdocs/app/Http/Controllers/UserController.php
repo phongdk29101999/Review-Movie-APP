@@ -2,10 +2,11 @@
 //phpcs:disable
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Review;
-use Illuminate\Support\Facades\Validator;
 
 /**
  * This will suppress all the PMD warnings in
@@ -13,15 +14,13 @@ use Illuminate\Support\Facades\Validator;
  *
  * @SuppressWarnings(PHPMD)
  */
-class UserController extends Controller
-{
+class UserController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return IlluminateHttpResponse
      */
-    public function index()
-    {
+    public function index() {
         $users = User::all();
         return response()->json($users);
     }
@@ -32,24 +31,22 @@ class UserController extends Controller
      * @param  IlluminateHttpRequest  $request
      * @return IlluminateHttpResponse
      */
-   
-    public function store(Request $request)
-    {
-        $validator              =        Validator::make($request->all(), [
-            "name"              =>     "required",
-            "email"        =>     "required",
-            "password"           =>     "required",
+    public function store(Request $request) {
+        $validator = Validator::make($request->all(), [
+            "name" => "required",
+            "email" => "required",
+            "password" => "required",
         ]);
         if($validator->fails()) {
             return response()->json(["status" => "failed", "message" => "validation_error", "errors" => $validator->errors()]);
         }
-        $userDataArray          =       array(
-            "name"               =>          $request->name,
-            "email"              =>          $request->email,
-            "password"           =>          md5($request->password),
+        $userDataArray = array(
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => md5($request->password),
         );
 
-        $user                   =           User::create($userDataArray);
+        $user = User::create($userDataArray);
         return response()->json(["Add User Successfully.", $user]);
     }
   
@@ -60,8 +57,7 @@ class UserController extends Controller
      * @param  AppExpense  $expense
      * @return IlluminateHttpResponse
      */
-    public function show(User $user)
-    {
+    public function show(User $user) {
         return $user;
     }
 
@@ -79,8 +75,7 @@ class UserController extends Controller
      * @param  AppExpense  $expense
      * @return IlluminateHttpResponse
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $user = User::find($id);
         
         $user->email = $request->get('email');
@@ -99,8 +94,7 @@ class UserController extends Controller
      * @param  AppExpense  $expense
      * @return IlluminateHttpResponse
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $user = User::find($id);
         $user->delete();
         return response()->json([
@@ -109,15 +103,8 @@ class UserController extends Controller
         
     }
     
-    public function getTotalUser()
-    {
+    public function getTotalUsers() {
         $user = User::count();
         return response()->json($user);
     }
-    public function test($id)
-    {
-        $user = User::count();
-        return response()->json($user->review_user());
-    }
-    
 }

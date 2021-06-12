@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import ReactStars from "react-rating-stars-component";
 
 function CommentCard({review}){
+    console.log(review);
     const [content, setContent] = useState(review.content)
     const [showMore, setShowMore] = useState({
         status:false,
@@ -53,7 +54,7 @@ function CommentCard({review}){
     return (
         <div className="card">
         <div className="reviewer">
-            <img src={review.author_details.avatar_path?review.author_details.avatar_path.slice(1):null} style = {{borderRadius: '50%'}}></img>
+            <img src={review.author_details.avatar_path?(review.author_details.avatar_path.includes("http")?review.author_details.avatar_path.slice(1):'https://image.tmdb.org/t/p/w1280'+review.author_details.avatar_path):'https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png'} style = {{width: 70, borderRadius: '50%'}}></img>
             <div className="right-infor">
                 <h3 style = {{marginLeft:'2rem', paddingBottom:'-1rem'}}>A Review by {review.author}</h3> 
                 <div className="rating1" style = {{marginLeft:'2rem'}} >

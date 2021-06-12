@@ -54,7 +54,7 @@ function Detail(){
     const getReview = () =>{
         axios.get(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${FEATURED_KEY}&language=en-US&page=1`)
         .then(response =>{
-            console.log(response);
+            // console.log(response);
             setReviews([...response.data.results]);
         })
         .catch(e => {

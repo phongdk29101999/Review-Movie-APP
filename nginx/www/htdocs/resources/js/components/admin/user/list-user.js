@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route , withRouter} from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
-import MovieTableRow from './movie-table';
+import ExpenseTableRow from './ExpenseTableRow';
 
 
-export default class ExpenseList extends Component {
+export default class ListUser extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-        movies: []
+            users: []
         };
     }
-
+    
     componentDidMount() {
-        axios.get('http://localhost/api/movies/')
+        axios.get('http://localhost/api/users/')
         .then(res => {
             this.setState({
-            movies: res.data
+                users: res.data
             });
         })
         .catch((error) => {
@@ -26,23 +27,20 @@ export default class ExpenseList extends Component {
     }
 
     DataTable() {
-        return this.state.movies.map((res, i) => {
-            return <MovieTableRow obj={res} key={i} />;
+        return this.state.users.map((res, i) => {
+            return <ExpenseTableRow obj={res} key={i} />;
         });
     }
-    
+
     render() {
         return (
-            <div className="table-wrapper"> 
+            <div className="table-wrapper">
                 <Table striped bordered hover>
                     <thead>
                         <tr>
                             <th >Id</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Director</th>
-                            <th>Poster</th>
-                            <th>Production Year</th>
+                            <th>Name</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -14,5 +14,3 @@ export default class ListUserTableRow extends Component {
         );
     }
 }
-
-

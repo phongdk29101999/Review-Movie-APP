@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Movie;
 
 /**
@@ -11,52 +12,48 @@ use App\Models\Movie;
  *
  * @SuppressWarnings(PHPMD)
  */
-class MovieController extends Controller
-{
+class MovieController extends Controller {
     public function getAllMovies () {
         return response()->json(Movie::all());
     }
 
-     public function index()
-    {
+    public function index() {
         $movies = Movie::all();
         return response()->json($movies);
     }
 
-    public function getTotalMovie() {
+    public function getTotalMovies() {
         $movie = Movie::count();
         return response()->json($movie);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $expert_evaluation = 2;
         $movie_length = 2;
         $watched_evaluation = 2;
         
-        $movieDataArray          =       array(
-            "title"               =>          $request->title,
-            "poster"              =>          $request->poster,
-            "description"           =>         $request->description,
-          "watched_evaluation"  => $watched_evaluation,
-            "director"         => $request->director,
-        "production_year"   => $request->production_year,
-        "expert_evaluation"  => $expert_evaluation, 
-        "movie_length"   =>   $movie_length,
-
+        $movieDataArray = array (
+            "title" => $request->title,
+            "poster" => $request->poster,
+            "description" => $request->description,
+            "watched_evaluation" => $watched_evaluation,
+            "director" => $request->director,
+            "production_year" => $request->production_year,
+            "expert_evaluation" => $expert_evaluation, 
+            "movie_length" => $movie_length,
         );
 
-        $movie                  =           Movie::create($movieDataArray);
+        $movie = Movie::create($movieDataArray);
         return response()->json(["Add Movie Successfully.", $movie]);
     }
-     /**
+
+    /**
      * Display the specified resource.
      *
      * @param  AppExpense  $expense
      * @return IlluminateHttpResponse
      */
-    public function show(User $user)
-    {
+    public function show(User $user) {
         return $user;
     }
 
@@ -96,19 +93,12 @@ class MovieController extends Controller
      * @param  AppExpense  $expense
      * @return IlluminateHttpResponse
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $movie = Movie::find($id);
         $movie->delete();
         return response()->json([
             'message' => 'movie deleted'
         ]);
         
-    }
-    
-    public function TotalMovie()
-    {
-        $movie = Movie::count();
-        return response()->json($movie);
     }
 }
