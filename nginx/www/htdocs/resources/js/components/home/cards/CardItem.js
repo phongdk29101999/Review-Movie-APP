@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Cards.css';
 
-const IMAGE_API = "https://image.tmdb.org/t/p/w1280";
+
 
 function CardItem({ title, poster_path, overview, vote_average, release_date, id }) {
   let history = useHistory();
@@ -23,6 +23,7 @@ function CardItem({ title, poster_path, overview, vote_average, release_date, id
     history.push(`/movie/${id}`);
   }
 
+
   return (
     <>
       <li className='cards__item'>
@@ -31,7 +32,7 @@ function CardItem({ title, poster_path, overview, vote_average, release_date, id
             <img
               className='cards__item__img'
               alt='Movie Poster'
-              src={IMAGE_API + poster_path}
+              src={ poster_path}
               onClick={handleClick}
             />
           </figure>

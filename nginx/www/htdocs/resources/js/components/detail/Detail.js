@@ -37,14 +37,13 @@ function Detail(){
     }
 
     const fetchMovies = () => {
-        axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${FEATURED_KEY}&language=en-US`).then(response => {
-        
+        axios.get(`http://localhost/api/movies/${id}`).then(response => {
+        console.log(response.data)
         let data = {...response.data}
         data.runtime = formatRunTime(data.runtime);
-        data.category = formatCategory(data.genres);
+        //data.category = formatCategory(data.genres);
         data.release_date = formatDate(data.release_date);
         data.year = getYear(data.release_date);
-        data.backdrop_path = 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces'+data.backdrop_path;
           setMovie(data);
         }).catch(e => {
           console.log(e);
@@ -83,13 +82,13 @@ function Detail(){
                   <div className="content">
                       <section className="content1">
                           <div className="poster-block">
-                              <img className = "poster" src={`https://image.tmdb.org/t/p/w1280${movie.poster_path}`}></img>
+                              <img className = "poster" src={movie.poster_path}></img>
                           </div>
                           <div className="infor-block">
                                   <section className="infor-section">
                                       <div className="tilte-infor">
                                           <h2 className="title">{movie.title+'('+movie.year+')'}</h2>
-                                          <div>{movie.release_date} (VN)・{movie.category}・{movie.runtime}</div>
+                                          <div>{movie.release_date} (VN)・{movie.runtime}</div>
                                           <div className="rating">
                                              <div className="star"><ReactStars {...firstExample} value= {movie.vote_average} /></div>
                                              <div className="average">{movie.vote_average}/10</div>

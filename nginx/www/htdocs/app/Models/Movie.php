@@ -13,14 +13,14 @@ class Movie extends Model
      *
      * @var array
      */
+   
     protected $fillable = [
         'title',
-        'poster',
-        'movie_length',
-        'director',
-        'production_year',
-        'expert_evaluation',
-        'watched_evaluation',
-        'description',
+        'poster_path',
+        'backdrop_path',
+        'release_date',
+        'vote_average',
+        'runtime',
+        'overview',
     ];
 }

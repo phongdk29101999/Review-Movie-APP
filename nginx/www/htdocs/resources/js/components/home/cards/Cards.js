@@ -3,7 +3,7 @@ import './Cards.css';
 import axios from 'axios';
 import CardItem from './CardItem';
 
-const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=7d6c5edae738317365e3235566d4c72d&page=1";
+const FEATURED_API = "http://localhost/api/movies/";
 
 function Cards() {
   const [movies, setMovies] = useState([]);
@@ -11,7 +11,8 @@ function Cards() {
 
   const fetchMovies = async(url) => {
     await axios.get(url).then(response => {
-      setMovies(response.data.results);
+      console.log(response)
+      setMovies(response.data);
     }).catch(e => {
       console.log(e);
     })
