@@ -2,16 +2,30 @@ import React, {useState, useEffect} from 'react';
 import './Cards.css';
 import axios from 'axios';
 import CardItem from './CardItem';
+import { Pagination } from '@material-ui/lab';
+import { makeStyles } from '@material-ui/core/styles';
 
 const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=7d6c5edae738317365e3235566d4c72d&page=1";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiPagination-ul': {
+      justifyContent: 'center',
+    }
+  },
+}));
+
 function Cards() {
-  const [movies, setMovies] = useState([]);
+  const classes = useStyles();
+  const [movies, setMovies] = useState([]); // all movies
+  const [cards, setCards] = useState([]); // movies show on each page
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   const fetchMovies = async(url) => {
     await axios.get(url).then(response => {
       setMovies(response.data.results);
+      setCards(response.data.results.slice(0, 6));
     }).catch(e => {
       console.log(e);
     })
@@ -22,6 +36,12 @@ function Cards() {
     if (movies && loading) setLoading(false);
   }, [FEATURED_API]);
 
+  const handleOnChange = (e, pageNum) => {
+    var splicedList = movies.slice((page-1)*6, (page-1)*6 + 6);
+    setCards(splicedList);
+    setPage(pageNum);
+  }
+
   return (
     <div className='cards'>
       <h1>Check out these EPIC Movies!</h1>
@@ -31,11 +51,12 @@ function Cards() {
             {loading ? (
               <p>Loading...</p>
             ) : (
-              movies ? movies.map((movie) => <CardItem key={movie.id} {...movie} />) : null
+              cards ? cards.map((card) => <CardItem key={card.id} {...card} />) : null
             )}
           </ul>
         </div>
       </div>
+      <Pagination className={classes.root} count={Math.ceil(movies.length/9)} page={page} size={'large'} variant="outlined" color="secondary"  onChange={handleOnChange} />
     </div>
   );
 }

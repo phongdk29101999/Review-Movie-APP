@@ -2,12 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../utils/button/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import axios from 'axios';
 import './NavBar.css';
+import avatar from './avatar.svg';
+import Badge from '@material-ui/core/Badge';
+import Avatar from '@material-ui/core/Avatar';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { FormatColorReset } from '@material-ui/icons';
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      marginTop: '10px',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '0',
+      borderRadius: '50%',
+      animation: '$ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}))(Badge);
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
   desktop: {
     "& .MuiInputBase-input": {
       color: "#fff"
@@ -29,6 +69,7 @@ function Navbar() {
   const [button, setButton] = useState(true);
   const [search, setSearch] = useState(false);
   const [data, setData] = useState([]);
+  const [auth, setAuth] = useState(true);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -113,11 +154,6 @@ function Navbar() {
               </div>
             </li>
             <li className='nav-item'>
-              <Link to='/about-us' className='nav-links' onClick={closeMobileMenu}>
-                About Us
-              </Link>
-            </li>
-            <li className='nav-item'>
               <Link
                 to='/add-movie'
                 className='nav-links'
@@ -126,17 +162,30 @@ function Navbar() {
                 <i className="fas fa-plus"></i>
               </Link>
             </li>
-            <li>
-              <Link
-                to='/sign-up'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
-              >
-                Sign Up
-              </Link>
+            <li className='nav-item'>
+              {auth ? (
+                <StyledBadge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                  variant="dot"
+                >
+                  <Avatar alt="avatar" src={avatar} />
+                </StyledBadge>
+              ) : (
+                <Link
+                  to='/sign-up'
+                  className='nav-links-mobile'
+                  onClick={closeMobileMenu}
+                >
+                  Sign Up
+                </Link>
+              )}
+              {button && !auth && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
         </div>
       </nav>
     </>

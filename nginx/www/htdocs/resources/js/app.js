@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import Home from './components/home/Home';
 import AddMovie from './components/AddMovie';
 import AboutUs from './components/AboutUs';
-import SignUp from './components/SignUp';
 import Detail from './components/detail/Detail';
+import SignUp from './components/auth/SignUp';
+import Login from './components/auth/Login';
 
 import { Admin, Resource } from 'react-admin';
 import restProvider from 'ra-data-simple-rest';
@@ -34,8 +35,9 @@ export default function App() {
           <PublicRoute path='/' exact component={Home} />
           <PublicRoute path='/about-us' component={AboutUs} />
           <PublicRoute path='/add-movie' component={AddMovie} />
-          <PublicRoute path='/sign-up' component={SignUp} />
           <PublicRoute path='/movie/:id' component={Detail} />
+          <PublicRoute path='/sign-up' component={SignUp} />
+          <PublicRoute path='/login' component={Login} />
 
           <Admin dataProvider={restProvider('http://localhost/api')}>
             <Resource
