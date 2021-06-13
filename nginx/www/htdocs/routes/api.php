@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +27,18 @@ Route::prefix('movies')->name('movies.')->group(function () {
     Route::get('/total', [MovieController::class, 'getTotalMovies'])->name('total');
     Route::get('/{id}', [MovieController::class, 'show'])->name('show');
     Route::put('/{id}', [MovieController::class, 'update'])->name('update');
+    Route::post('/', [MovieController::class, 'store'])->name('create');
+    Route::delete('/{id}', [MovieController::class,'delete'])->name('delete');
 });
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('all');
     Route::get('/total', [UserController::class, 'getTotalUsers'])->name('total');
+});
+
+Route::prefix('auth')->name('auth.')->group(function () {
+    Route::post('/signup', [AuthController::class, 'register'])->name('signup');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
 // Route::apiResource('/admin/users', 'UserController');

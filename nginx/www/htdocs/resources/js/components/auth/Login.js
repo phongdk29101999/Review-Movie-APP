@@ -4,8 +4,11 @@ import useForm from './useForm';
 import FormSuccess from './FormSuccess';
 import authImg from './auth.svg';
 import './Form.css';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 export default function Login ({ submitForm }) {
+  const history = useHistory();
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate
@@ -14,7 +17,12 @@ export default function Login ({ submitForm }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function submitForm() {
-    setIsSubmitted(true);
+    axios.post('http://localhost/api/auth/login', {"email":values.email, "password":values.password})
+    .then( response =>{
+      localStorage.setItem('user',JSON.stringify({...response.data.user}));
+      history.push("/");
+    })
+    .catch(err => console.log(err))
   }
 
   return (
@@ -54,7 +62,7 @@ export default function Login ({ submitForm }) {
                 />
                 {errors.password && <p>{errors.password}</p>}
               </div>
-              <button className='form-input-btn' type='submit'>
+              <button className='form-input-btn' type='submit' onClick={submitForm}>
                 Login
               </button>
               <span className='form-input-login'>
