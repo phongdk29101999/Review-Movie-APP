@@ -5,6 +5,7 @@ import FormSuccess from './FormSuccess';
 import './Form.css';
 import authImg from './auth.svg';
 import { FormControlLabel, Checkbox}  from '@material-ui/core';
+import axios from 'axios';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -31,7 +32,11 @@ export default function Signup ({ submitForm }) {
   };  
 
   function submitForm() {
-    setIsSubmitted(true);
+    axios.post('http://localhost/api/auth/signup', {"name":values.username,"email":values.email, "password":values.password})
+    .then( response =>{
+      setIsSubmitted(true);
+    })
+    .catch(err => console.log(err))
   }
 
   return (
