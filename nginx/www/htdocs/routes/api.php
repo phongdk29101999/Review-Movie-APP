@@ -22,8 +22,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('movies')->name('movies.')->group(function () {
-    Route::get('/', [MovieController::class, 'getAllMovies'])->name('all');
+    Route::get('/', [MovieController::class, 'index'])->name('all');
     Route::get('/total', [MovieController::class, 'getTotalMovies'])->name('total');
+    Route::get('/{id}', [MovieController::class, 'show'])->name('show');
 });
 
 Route::prefix('users')->name('users.')->group(function () {

@@ -22,7 +22,9 @@ class UserController extends Controller {
      */
     public function index() {
         $users = User::all();
-        return response()->json($users);
+        return response()->json($users)->withHeaders([
+            'Content-Range' => 'users 0-4/27',
+        ]);
     }
 
     /**

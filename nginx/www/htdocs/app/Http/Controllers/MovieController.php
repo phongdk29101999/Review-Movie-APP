@@ -19,7 +19,9 @@ class MovieController extends Controller {
 
     public function index() {
         $movies = Movie::all();
-        return response()->json($movies);
+        return response()->json($movies)->withHeaders([
+            'Content-Range' => 'movies 0-4/27',
+        ]);
     }
 
     public function getTotalMovies() {
@@ -53,8 +55,9 @@ class MovieController extends Controller {
      * @param  AppExpense  $expense
      * @return IlluminateHttpResponse
      */
-    public function show(User $user) {
-        return $user;
+    public function show($id) {
+        $movie = Movie::find($id);
+        return response()->json($movie);
     }
 
     /**
@@ -78,7 +81,7 @@ class MovieController extends Controller {
         $movie->title = $request->get('title');
         $movie->description = $request->get('description');
         $movie->director = $request->get('director');
-        $movie->poster  = $request->get('poster');
+        $movie->poster = $request->get('poster');
         $movie->production_year = $request->get('production_year');
         $movie->save();
         return response()->json([
