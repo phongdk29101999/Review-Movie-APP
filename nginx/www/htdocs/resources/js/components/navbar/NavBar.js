@@ -9,20 +9,25 @@ import avatar from './avatar.svg';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { FormatColorReset } from '@material-ui/icons';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
+    // '& .MuiBadge-anchorOriginBottomRightCircle': {
+    //   right: '26%',
+    //   bottom: '26%',
+    // },
+    // '& .MuiBadge-root': {
+    //   padding: '1rem 1rem',
+    // },
     backgroundColor: '#44b700',
     color: '#44b700',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
     '&::after': {
       position: 'absolute',
-      marginTop: '10px',
       top: 0,
       left: 0,
       width: '100%',
-      height: '0',
+      height: '100%',
       borderRadius: '50%',
       animation: '$ripple 1.2s infinite ease-in-out',
       border: '1px solid currentColor',
@@ -60,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=7d6c5edae738317365e3235566d4c72d&page=1";
+const FEATURED_API = "http://localhost/api/movies/";
 
 function Navbar() {
   let history = useHistory();
@@ -85,7 +90,7 @@ function Navbar() {
 
   const fetchMoviesData = async(url) => {
     await axios.get(url).then((res) => {
-      setData(res.data.results);
+      setData(res.data);
     }).catch(err => {
       console.log(err);
     })
@@ -162,18 +167,21 @@ function Navbar() {
                 <i className="fas fa-plus"></i>
               </Link>
             </li>
-            <li className='nav-item'>
+            <li>
               {auth ? (
-                <StyledBadge
-                  overlap="circle"
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                  }}
-                  variant="dot"
-                >
-                  <Avatar alt="avatar" src={avatar} />
-                </StyledBadge>
+                <div className='nav-links'>
+                  <StyledBadge
+                    className='nav-links-badge'
+                    overlap="circle"
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'right',
+                    }}
+                    variant="dot"
+                  >
+                    <Avatar alt="avatar" src={avatar} />
+                  </StyledBadge>
+                </div>
               ) : (
                 <Link
                   to='/sign-up'

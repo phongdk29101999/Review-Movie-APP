@@ -24,8 +24,8 @@ function Cards() {
 
   const fetchMovies = async(url) => {
     await axios.get(url).then(response => {
-      setMovies(response.data.results);
-      setCards(response.data.results.slice(0, 6));
+      setMovies(response.data);
+      setCards(response.data.slice(0, 6));
     }).catch(e => {
       console.log(e);
     })

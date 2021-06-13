@@ -44,10 +44,11 @@
   width: 60vw;
   justify-content: end;
   margin-right: 2rem;
+  align-items: center;
 }
 
 .nav-item {
-  /* height: 80px; */
+  height: 80px;
 }
 
 .nav-links {
@@ -62,6 +63,10 @@
 .nav-links:hover {
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
+}
+
+.nav-links-badge {
+  padding: 0.6rem 0 0.4rem 0;
 }
 
 .fa-bars {
