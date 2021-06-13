@@ -56,7 +56,7 @@ function Cards() {
           </ul>
         </div>
       </div>
-      <Pagination className={classes.root} count={Math.ceil(movies.length/9)} page={page} size={'large'} variant="outlined" color="secondary"  onChange={handleOnChange} />
+      <Pagination className={classes.root} count={movies?Math.ceil(movies.length/9):null} page={page} size={'large'} variant="outlined" color="secondary"  onChange={handleOnChange} />
     </div>
   );
 }

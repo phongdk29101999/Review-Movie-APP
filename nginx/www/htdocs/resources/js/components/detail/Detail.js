@@ -5,29 +5,45 @@ import "./Detail.css"
 import ReactStars from "react-rating-stars-component";
 const FEATURED_KEY = "7d6c5edae738317365e3235566d4c72d";
 import CommentCard from "./CommentCard"
+import { Button, Modal } from "react-bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BiPencil } from 'react-icons/bi';
+
 
 
 function Detail(){
     const [movie, setMovie] = useState();
     const [reviews, setReviews] = useState([]);
     const {id} = useParams();
+    const [myComment, setMyComment] = useState();
+    const [myRating, setMyRating] = useState(0);
+    const user_id = JSON.parse(localStorage.getItem('user')).id
+
+    const handleChange = (event) =>{
+        setMyComment(event.target.value);
+    }
+
+    const handleChangeRating = (event) =>{
+        setMyRating(event.target.value);
+    }
 
     const formatRunTime = (runtime) => {
         const minute = runtime %60;
         const hour = (runtime -minute)/60;
-        if(hour == 0) return minute+"m"
-        else return hour+'h'+minute+'m';
+        if(hour == 0) return minute+"分"
+        else return hour+'時'+minute+'分';
     }
 
     const formatDate = (date) => {
-        const [year, month, day] = date.split('-');
-        return [day, month, year].join('/');
+        
+        const [year, month, day] = [...date.split('-')];
+        return year + '年'　+ month + '月' + day + '日';
     }
 
     const getYear = (date) =>{
-        const arr = date.split('/');
+        const arr = date.split('-');
         
-        return arr[2];
+        return arr[0];
     }
 
     const formatCategory = (genres) => {
@@ -36,25 +52,40 @@ function Detail(){
         return listCategories.join(', ');;
     }
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const handleAddComment = () =>{
+        axios.post('http://localhost/api/reviews', {user_id, movie_id:id, review_text:myComment, rating:myRating})
+        .then( response =>{
+            const listReview = [...reviews];
+            listReview.push(response.data);
+            setReviews(listReview);
+            handleClose();
+        })
+        .catch(e => {console.log(e)})
+    }
+
     const fetchMovies = () => {
         axios.get(`http://localhost/api/movies/${id}`).then(response => {
         console.log(response.data)
         let data = {...response.data}
         data.runtime = formatRunTime(data.runtime);
-        //data.category = formatCategory(data.genres);
-        data.release_date = formatDate(data.release_date);
         data.year = getYear(data.release_date);
+        data.release_date = formatDate(data.release_date);
           setMovie(data);
         }).catch(e => {
-          console.log(e);
+          console.log(e); 
         })
       }
 
     const getReview = () =>{
-        axios.get(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${FEATURED_KEY}&language=en-US&page=1`)
+        axios.get(`http://localhost/api/movies/${id}/reviews`)
         .then(response =>{
             // console.log(response);
-            setReviews([...response.data.results]);
+            setReviews([...response.data]);
         })
         .catch(e => {
             console.log(e);
@@ -78,6 +109,10 @@ function Detail(){
         count:10,
         edit: false
       };
+      const secondExample = {
+        size: 30,
+        count:10,
+      }
     
     return(
         
@@ -113,7 +148,10 @@ function Detail(){
                 </div>
                 <div className = "comment-container">
                     <div className="content">
-                      <h3>Reviews</h3>
+                        <div style = {{display:'flex'}}>
+                        <h3　style = {{paddingTop:'1rem'}}>レビュー</h3>
+                        <div className = "add-comment-button"  onClick = {handleShow}><BiPencil />レビュー追加</div>
+                        </div>
                       <div className="white-column">
                         <section className="panel-review">
                             <div className="review-container">
@@ -136,6 +174,25 @@ function Detail(){
                 </>
                 :null
             }
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{movie?movie.title:null}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div>Rate</div>
+                    <ReactStars {...secondExample} value={myRating} onChange={(value) =>setMyRating(value)} />
+                    <div>Content</div>
+                    <input type = "text" style ={{border: "1px solid", width:"100%", minHeight:"5rem"}} value ={myComment} onChange = {handleChange} />
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleAddComment}>
+                    Save Changes
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </React.Fragment>
     )
 }
