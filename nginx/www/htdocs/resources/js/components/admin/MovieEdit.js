@@ -7,12 +7,12 @@ export default function MovieEdit(props) {
       <SimpleForm>
         <TextInput disabled source='id' fullWidth />
         <TextInput source='title' fullWidth />
-        <ImageInput source='poster' fullWidth />
-        <NumberInput source='movie_lenght' fullWidth />
-        <TextInput source='director' fullWidth />
-        <DateInput source='production_year' fullWidth />
-        <NumberInput source='expert_evaluation' fullWidth min={0} max={10}/>
-        <TextInput multiline source='description' fullWidth />
+        <ImageInput source='poster_path' fullWidth />
+        <ImageInput source='backdrop_path' fullWidth />
+        <NumberInput source='runtime' fullWidth />
+        <DateInput source='release_date' fullWidth />
+        <NumberInput source='vote_average' fullWidth min={0} max={10}/>
+        <TextInput multiline source='overview' fullWidth />
       </SimpleForm>
     </Edit>
   )

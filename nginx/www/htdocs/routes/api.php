@@ -25,6 +25,7 @@ Route::prefix('movies')->name('movies.')->group(function () {
     Route::get('/', [MovieController::class, 'index'])->name('all');
     Route::get('/total', [MovieController::class, 'getTotalMovies'])->name('total');
     Route::get('/{id}', [MovieController::class, 'show'])->name('show');
+    Route::put('/{id}', [MovieController::class, 'update'])->name('update');
 });
 
 Route::prefix('users')->name('users.')->group(function () {

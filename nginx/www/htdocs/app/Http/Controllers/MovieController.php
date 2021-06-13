@@ -79,15 +79,14 @@ class MovieController extends Controller {
     {
         $movie = Movie::find($id);
         $movie->title = $request->get('title');
-        $movie->description = $request->get('description');
-        $movie->director = $request->get('director');
-        $movie->poster = $request->get('poster');
-        $movie->production_year = $request->get('production_year');
+        $movie->overview = $request->get('overview');
+        $movie->runtime = $request->get('runtime');
+        $movie->poster_path = $request->get('poster_path');
+        $movie->backdrop_path = $request->get('backdrop_path');
+        $movie->release_date = $request->get('release_date');
+        $movie->vote_average = $request->get('vote_average');
         $movie->save();
-        return response()->json([
-            'message' => 'Movie updated!',
-            'movie' => $movie
-        ]);
+        return response()->json($movie);
     }
     
     /**

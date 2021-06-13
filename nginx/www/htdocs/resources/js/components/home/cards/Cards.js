@@ -5,7 +5,7 @@ import CardItem from './CardItem';
 import { Pagination } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 
-const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=7d6c5edae738317365e3235566d4c72d&page=1";
+const FEATURED_API = "http://localhost/api/movies/";
 
 const useStyles = makeStyles((theme) => ({
   root: {

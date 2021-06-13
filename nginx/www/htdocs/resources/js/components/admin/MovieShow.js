@@ -7,12 +7,12 @@ export default function PostShow(props) {
         <SimpleShowLayout>
             <TextField source='id' />
             <TextField source='title' />
-            <ImageField source='poster' />
-            <NumberField source='expert_evaluation' />
-            <NumberField source='movie_lenght' />
-            <TextField source='director' />
-            <DateField source='production_year' />
-            <RichTextField source='description' />
+            <ImageField source='poster_path' />
+            <ImageField source='backdrop_path' />
+            <NumberField source='vote_average' />
+            <NumberField source='runtime' />
+            <DateField source='release_date' />
+            <RichTextField source='overview' />
         </SimpleShowLayout>
     </Show>
   )
