@@ -60,9 +60,16 @@ function Detail(){
             console.log(e);
           })
     }
+    const getLanguages = () =>{
+        axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${FEATURED_KEY}&language=ja-JP`)
+        .then(response =>{console.log(response)})
+        .catch(e => {console.log(e)})
+            
+    }
       useEffect(() => {
         fetchMovies();
         getReview();
+        getLanguages()
       }, []);
       
      
@@ -94,7 +101,7 @@ function Detail(){
                                              <div className="average">{movie.vote_average}/10</div>
                                           </div>
                                           <div style = {{fontStyle: 'italic', paddingBottom:'1rem'}}>{movie.tagline}</div>
-                                          <h3>Overview</h3>
+                                          <h3>概要</h3>
                                           <div className="overview">
                                               <p>{movie.overview}</p>
                                           </div>
