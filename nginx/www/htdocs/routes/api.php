@@ -26,6 +26,8 @@ Route::prefix('movies')->name('movies.')->group(function () {
     Route::get('/total', [MovieController::class, 'getTotalMovies'])->name('total');
     Route::get('/{id}', [MovieController::class, 'show'])->name('show');
     Route::put('/{id}', [MovieController::class, 'update'])->name('update');
+    Route::post('/', [MovieController::class, 'store'])->name('create');
+    Route::delete('/{id}', [MovieController::class,'delete'])->name('delete');
 });
 
 Route::prefix('users')->name('users.')->group(function () {

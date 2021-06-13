@@ -30,23 +30,17 @@ class MovieController extends Controller {
     }
 
     public function store(Request $request) {
-        $expert_evaluation = 2;
-        $movie_length = 2;
-        $watched_evaluation = 2;
-        
-        $movieDataArray = array (
-            "title" => $request->title,
-            "poster" => $request->poster,
-            "description" => $request->description,
-            "watched_evaluation" => $watched_evaluation,
-            "director" => $request->director,
-            "production_year" => $request->production_year,
-            "expert_evaluation" => $expert_evaluation, 
-            "movie_length" => $movie_length,
-        );
-
-        $movie = Movie::create($movieDataArray);
-        return response()->json(["Add Movie Successfully.", $movie]);
+        $movie = Movie::create([
+            'title' => $request->title,
+            'overview' => $request->overview,
+            'runtime' => $request->runtime,
+            'poster_path' => $request->poster_path,
+            'backdrop_path' => $request->backdrop_path,
+            'release_date' => $request->release_date,
+            'vote_average' => $request->vote_average,
+        ]);
+       
+        return response()->json($movie);
     }
 
     /**
@@ -95,12 +89,10 @@ class MovieController extends Controller {
      * @param  AppExpense  $expense
      * @return IlluminateHttpResponse
      */
-    public function destroy($id) {
+    public function delete($id) {
         $movie = Movie::find($id);
         $movie->delete();
-        return response()->json([
-            'message' => 'movie deleted'
-        ]);
+        return response()->json($movie);
         
     }
 }
