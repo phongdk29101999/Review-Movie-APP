@@ -53,7 +53,7 @@ export default function AddMovie () {
   };
 
   const isFormValid = () => {
-    return title && overview && length && date && score && poster_path && backdrop_path
+    return values.title && values.overview && values.length && values.date && values.score && values.poster_path && values.backdrop_path
   }
 
   const handleFormSubmit = e => {
