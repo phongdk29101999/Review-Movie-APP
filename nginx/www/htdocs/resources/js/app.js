@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Home from './components/home/Home';
-import AddMovie from './components/AddMovie';
-import AboutUs from './components/AboutUs';
+import AddMovie from './components/addMovie/AddMovie';
 import Detail from './components/detail/Detail';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
@@ -33,7 +32,6 @@ export default function App() {
       <Router>
         <Switch>
           <PublicRoute path='/' exact component={Home} />
-          <PublicRoute path='/about-us' component={AboutUs} />
           <PublicRoute path='/add-movie' component={AddMovie} />
           <PublicRoute path='/movie/:id' component={Detail} />
           <PublicRoute path='/sign-up' component={SignUp} />
