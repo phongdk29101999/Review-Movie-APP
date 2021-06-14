@@ -1,7 +1,5 @@
 # Review Movies API
 > Review movies API build with Laravel 8 & Docker
-## Dependence
-[frontend](https://github.com/minhld99/React_Movie_Review)
 
 ## Requirement
 Docker-CE 
