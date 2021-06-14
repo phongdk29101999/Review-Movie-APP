@@ -9,6 +9,7 @@ import avatar from './avatar.svg';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { userCheck } from 'react-admin';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -74,7 +75,7 @@ function Navbar() {
   const [button, setButton] = useState(true);
   const [search, setSearch] = useState(false);
   const [data, setData] = useState([]);
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -98,6 +99,8 @@ function Navbar() {
 
   useEffect(() => {
     showButton();
+    const user_id = JSON.parse(localStorage.getItem('user'))?JSON.parse(localStorage.getItem('user')).id:null;
+    if (user_id) setAuth(true)
     fetchMoviesData(FEATURED_API);
   }, []);
 
@@ -105,6 +108,12 @@ function Navbar() {
 
   const handleSearchClick = () => {
     setSearch(!search);
+  }
+
+  const handleSignOut = () => {
+    setClick(false);
+    setAuth(false);
+    window.localStorage.clear();
   }
 
   return (
@@ -124,7 +133,7 @@ function Navbar() {
                 <Autocomplete
                   id="custom-autocomplete"
                   options={data}
-                  style={{ width: 350, textAlign: 'center', padding: '1rem', textEmphasisColor: 'white' }}
+                  style={{ width: 450, textAlign: 'center', padding: '1rem', textEmphasisColor: 'white' }}
                   freeSolo
                   autoComplete
                   autoHighlight
@@ -167,6 +176,15 @@ function Navbar() {
                 <i className="fas fa-plus"></i>
               </Link>
             </li>
+            {auth && <li className='nav-item'>
+            <Link
+                to='/'
+                className='nav-links'
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </Link>
+            </li>}
             <li>
               {auth ? (
                 <div className='nav-links'>

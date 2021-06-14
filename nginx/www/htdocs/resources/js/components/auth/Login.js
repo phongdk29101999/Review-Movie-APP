@@ -44,7 +44,7 @@ export default function Login ({ submitForm }) {
                   className='form-input'
                   type='email'
                   name='email'
-                  placeholder='Enter your email'
+                  placeholder='Enter your email. Hint: test@test.com'
                   value={values.email}
                   onChange={handleChange}
                 />
@@ -56,7 +56,7 @@ export default function Login ({ submitForm }) {
                   className='form-input'
                   type='password'
                   name='password'
-                  placeholder='Enter your password'
+                  placeholder='Enter your password. Hint: test1234'
                   value={values.password}
                   onChange={handleChange}
                 />
