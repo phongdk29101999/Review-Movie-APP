@@ -17,7 +17,7 @@ function Detail(){
     const {id} = useParams();
     const [myComment, setMyComment] = useState();
     const [myRating, setMyRating] = useState(0);
-    const user_id = JSON.parse(localStorage.getItem('user')).id
+    const user_id = JSON.parse(localStorage.getItem('user'))?JSON.parse(localStorage.getItem('user')).id:null;
 
     const handleChange = (event) =>{
         setMyComment(event.target.value);
