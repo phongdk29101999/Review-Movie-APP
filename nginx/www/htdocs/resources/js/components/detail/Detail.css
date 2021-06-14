@@ -140,7 +140,27 @@
     display: flex;
 }
 
-.show:hover{
+.show-more:hover{
     text-decoration: underline;
+    cursor: pointer;
+}
+
+.add-comment-button{
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    padding: 6px 20px;
+    font-size: 0.9em;
+    border: 2px solid #fff;
+    border-color: #1c161d;
+    background-color: #1c161d;
+    color:white;
+    margin-left: 60rem
+}
+
+.add-comment-button:hover{
+    background-color:#3c4144;
+    border-color:#3c4144;
     cursor: pointer;
 }
