@@ -37,7 +37,7 @@ function Cards() {
   }, [FEATURED_API]);
 
   const handleOnChange = (e, pageNum) => {
-    var splicedList = movies.slice((page-1)*6, (page-1)*6 + 6);
+    var splicedList = movies.slice((pageNum-1)*6, (pageNum-1)*6 + 6);
     setCards(splicedList);
     setPage(pageNum);
   }
@@ -56,7 +56,7 @@ function Cards() {
           </ul>
         </div>
       </div>
-      <Pagination className={classes.root} count={movies?Math.ceil(movies.length/9):null} page={page} size={'large'} variant="outlined" color="secondary"  onChange={handleOnChange} />
+      <Pagination className={classes.root} count={movies?Math.ceil(movies.length/6):null} page={page} size={'large'} variant="outlined" color="secondary"  onChange={handleOnChange} />
     </div>
   );
 }

@@ -34,6 +34,7 @@ function CardItem({ title, poster_path, overview, vote_average, release_date, id
               alt='Movie Poster'
               src={ poster_path}
               onClick={handleClick}
+              loading = 'lazy'
             />
           </figure>
           <div className='cards__item__info'>
