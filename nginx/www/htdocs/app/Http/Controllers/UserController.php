@@ -79,10 +79,12 @@ class UserController extends Controller {
      */
     public function update(Request $request, $id) {
         $user = User::find($id);
-        
-        $user->email = $request->get('email');
-        $user->password = $request->get('password');
-        $user->name = $request->get('name');
+        if ($request->get('email'))
+            $user->email = $request->get('email');
+        if ($request->get('password'))
+            $user->password = $request->get('password');
+        if ($request->get('name'))
+            $user->name = $request->get('name');
         $user->save();
         return response()->json([
             'message' => 'User updated!',

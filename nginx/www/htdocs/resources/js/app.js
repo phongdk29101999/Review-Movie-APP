@@ -6,6 +6,7 @@ import AddMovie from './components/addMovie/AddMovie';
 import Detail from './components/detail/Detail';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
+import Profile from './components/profile/Profile';
 
 import { Admin, Resource } from 'react-admin';
 import restProvider from 'ra-data-simple-rest';
@@ -16,6 +17,9 @@ import MovieEdit from './components/admin/MovieEdit';
 import UserList from './components/admin/UserList';
 import UserCreate from './components/admin/UserCreate';
 import UserEdit from './components/admin/UserEdit';
+import ReviewList from './components/admin/ReviewList';
+import ReviewEdit from './components/admin/ReviewEdit';
+import ReviewShow from './components/admin/ReviewShow';
 
 import PublicRoute from './components/utils/router/PublicRoute';
 import AdminRoute from './components/utils/router/AdminRoute';
@@ -36,8 +40,9 @@ export default function App() {
           <PublicRoute path='/movie/:id' component={Detail} />
           <PublicRoute path='/sign-up' component={SignUp} />
           <PublicRoute path='/login' component={Login} />
+          <PublicRoute path='/profile' component={Profile} />
 
-          <Admin dataProvider={restProvider('http://localhost/api')}>
+          <Admin dataProvider={restProvider('https://de137c7ae962.ngrok.io/api')}>
             <Resource
               name='movies'
               show={MovieShow}
@@ -50,6 +55,12 @@ export default function App() {
               list={UserList}
               create={UserCreate}
               edit={UserEdit}
+            />
+            <Resource
+              name='reviews'
+              list={ReviewList}
+              show={ReviewShow}
+              edit={ReviewEdit}
             />
           </Admin>
 

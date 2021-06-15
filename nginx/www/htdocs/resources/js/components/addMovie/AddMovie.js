@@ -63,7 +63,7 @@ export default function AddMovie () {
   };
 
   function submitForm() {
-    axios.post('http://localhost/api/movies', {
+    axios.post('https://de137c7ae962.ngrok.io/api/movies', {
       "title": values.title, 
       "overview": values.overview,
       "runtime": values.length,

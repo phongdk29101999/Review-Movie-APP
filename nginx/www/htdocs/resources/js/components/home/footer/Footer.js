@@ -21,27 +21,27 @@ function Footer() {
               type='email'
               placeholder='Your Email'
             />
-            <Button buttonStyle='btn--outline'>SIGN UP</Button>
+            <Button buttonStyle='btn--outline' style={{ color: "#fff" }}>SIGN UP</Button>
           </form>
         </div>
       </section>
       <div className='footer-links'>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
-            <h2>About Us</h2>
-            <Link to='/about-us'>1. Cong</Link>
-            <Link to='/about-us'>2. Chi</Link>
-            <Link to='/about-us'>3. Phong</Link>
-            <Link to='/about-us'>4. Vinh</Link>
-            <Link to='/about-us'>5. Minh</Link>
+            <h2>名前</h2>
+            <Link to='/'>Cong<b> (TL)</b></Link>
+            <Link to='/'>Chi<b> (SL)</b></Link>
+            <Link to='/'>Minh</Link>
+            <Link to='/'>Vinh</Link>
+            <Link to='/'>Phong</Link>
           </div>
           <div className='footer-link-items'>
-            <h2>Contact Us</h2>
-            <Link to='/sign-up'>1. Cong</Link>
-            <Link to='/sign-up'>2. Chi</Link>
-            <Link to='/sign-up'>3. Phong</Link>
-            <Link to='/sign-up'>4. Vinh</Link>
-            <Link to='/sign-up'>5. Minh</Link>
+            <h2>学籍番号</h2>
+            <Link to='/'>20176707</Link>
+            <Link to='/'>20176700</Link>
+            <Link to='/'>20176821</Link>
+            <Link to='/'>20176912</Link>
+            <Link to='/'>20176843</Link>
           </div>
         </div>
       </div>

@@ -36,6 +36,8 @@ Route::prefix('movies')->name('movies.')->group(function () {
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('all');
     Route::get('/total', [UserController::class, 'getTotalUsers'])->name('total');
+    Route::put('/{id}', [UserController::class, 'update'])->name('update');
+    Route::get('/{id}/reviews', [ReviewController::class, 'getReviewByUser']);
 });
 
 Route::prefix('auth')->name('auth.')->group(function () {
@@ -45,6 +47,10 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
 Route::prefix('reviews')->name('reviews.')->group(function () {
     Route::post('/',[ReviewController::class,'createReview']);
+    Route::get('/', [ReviewController::class, 'index'])->name('all');
+    Route::get('/{id}', [ReviewController::class, 'show'])->name('show');
+    Route::put('/{id}', [ReviewController::class, 'update'])->name('update');
+    Route::delete('/{id}', [ReviewController::class,'delete'])->name('delete');
 });
 
 // Route::apiResource('/admin/users', 'UserController');

@@ -17,7 +17,7 @@ export default function Login ({ submitForm }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function submitForm() {
-    axios.post('http://localhost/api/auth/login', {"email":values.email, "password":values.password})
+    axios.post('https://de137c7ae962.ngrok.io/api/auth/login', {"email":values.email, "password":values.password})
     .then( response =>{
       localStorage.setItem('user',JSON.stringify({...response.data.user}));
       history.push("/");

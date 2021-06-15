@@ -32,7 +32,7 @@ export default function Signup ({ submitForm }) {
   };  
 
   function submitForm() {
-    axios.post('http://localhost/api/auth/signup', {"name":values.username,"email":values.email, "password":values.password})
+    axios.post('https://de137c7ae962.ngrok.io/api/auth/signup', {"name":values.username,"email":values.email, "password":values.password})
     .then( response =>{
       setIsSubmitted(true);
     })

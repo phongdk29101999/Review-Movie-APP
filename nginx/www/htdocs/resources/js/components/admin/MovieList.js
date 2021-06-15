@@ -25,8 +25,8 @@ export default function MovieList(props) {
       <Datagrid>
         <TextField source='id' />
         <TextField source='title' />
-        <TextField source='expert_evaluation' />
-        <RichTextField source='description' />
+        <TextField source='vote_average' />
+        <RichTextField source='overview' />
         <EditButton basePath='/movies' />
         <DeleteButton basePath='/movies' />
         <ShowButton basePath="/movies" label="Show" record={props} />

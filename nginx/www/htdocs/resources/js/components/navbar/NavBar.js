@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const FEATURED_API = "http://localhost/api/movies/";
+const FEATURED_API = "https://de137c7ae962.ngrok.io/api/movies/";
 
 function Navbar() {
   let history = useHistory();
@@ -187,7 +187,10 @@ function Navbar() {
             </li>}
             <li>
               {auth ? (
-                <div className='nav-links'>
+                <Link 
+                  to='/profile'
+                  className='nav-links'
+                >
                   <StyledBadge
                     className='nav-links-badge'
                     overlap="circle"
@@ -199,7 +202,7 @@ function Navbar() {
                   >
                     <Avatar alt="avatar" src={avatar} />
                   </StyledBadge>
-                </div>
+                </Link>
               ) : (
                 <Link
                   to='/sign-up'

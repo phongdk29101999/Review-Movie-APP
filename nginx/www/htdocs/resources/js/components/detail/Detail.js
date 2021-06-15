@@ -58,7 +58,7 @@ function Detail(){
     const handleShow = () => setShow(true);
 
     const handleAddComment = () =>{
-        axios.post('http://localhost/api/reviews', {user_id, movie_id:id, review_text:myComment, rating:myRating})
+        axios.post('https://de137c7ae962.ngrok.io/api/reviews', {user_id, movie_id:id, review_text:myComment, rating:myRating})
         .then( response =>{
             const listReview = [...reviews];
             listReview.push(response.data);
@@ -69,7 +69,7 @@ function Detail(){
     }
 
     const fetchMovies = () => {
-        axios.get(`http://localhost/api/movies/${id}`).then(response => {
+        axios.get(`https://de137c7ae962.ngrok.io/api/movies/${id}`).then(response => {
         console.log(response.data)
         let data = {...response.data}
         data.runtime = formatRunTime(data.runtime);
@@ -82,7 +82,7 @@ function Detail(){
       }
 
     const getReview = () =>{
-        axios.get(`http://localhost/api/movies/${id}/reviews`)
+        axios.get(`https://de137c7ae962.ngrok.io/api/movies/${id}/reviews`)
         .then(response =>{
             // console.log(response);
             setReviews([...response.data]);

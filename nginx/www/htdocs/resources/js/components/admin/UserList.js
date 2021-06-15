@@ -16,7 +16,6 @@ export default function UserList(props) {
         <TextField source='id' />
         <TextField source='name' />
         <EmailField source='email' />
-        <ImageField source='avatar' />
         <EditButton basePath='/users' />
         <DeleteButton basePath='/users' />
       </Datagrid>
