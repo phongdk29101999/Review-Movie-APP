@@ -1,5 +1,5 @@
-# Review Movies API
-> Review movies API build with Laravel 8 & Docker
+# Review Movies APP
+> Review movies APP build with Laravel 8 & Docker
 
 ## Requirement
 Docker-CE 
